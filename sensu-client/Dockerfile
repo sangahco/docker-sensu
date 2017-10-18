@@ -1,8 +1,7 @@
-FROM usman/sensu-client
+FROM $REGISTRY_URL/sensu-server
 
-#COPY ./load-docker-metrics.sh /etc/sensu/plugins/
+COPY ./config/client.json /etc/sensu/conf.d/
 
-RUN set -ex && \
-    chmod +x /etc/sensu/plugins/*.sh || true && \
-    yum install -y nc && \
-    chmod 666 /var/run/docker.sock || true
+COPY ./docker-entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]

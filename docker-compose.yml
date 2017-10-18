@@ -5,9 +5,18 @@ services:
   sensu-server:
     build: sensu-server
     volumes:
-    - $PWD/sensu-server/check-docker.json:/etc/sensu/conf.d/check-docker.json
+    - $PWD/sensu-server/config/check-docker.json:/etc/sensu/conf.d/check-docker.json
+    ports:
+    - 4567:4567  # API PORT
+    - 5672:5672  # rabbitmq
+    - 15672:15672  # rabbitmq console
+    command: redis-cli ping
+
+  uchiwa:
+    image: uchiwa/uchiwa
+    volumes:
+    - $PWD/sensu-server/config/uchiwa.json:/config/config.json
+    depends_on:
+    - sensu-server
     ports:
     - 3000:3000  # WEB UI PORT (uchiwa)
-    - 4567:4567  # API PORT
-    - 5671:5671  # rabbitmq
-    - 15672:15672  # rabbitmq console

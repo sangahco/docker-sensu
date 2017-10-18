@@ -1,0 +1,14 @@
+{
+    "client": {
+      "name": "ubuntu-client",
+      "address": "127.0.0.1",
+      "environment": "development",
+      "subscriptions": [
+        "docker"
+      ],
+      "socket": {
+        "bind": "127.0.0.1",
+        "port": 3030
+      }
+    }
+  }
