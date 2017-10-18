@@ -3,7 +3,7 @@ version: "3"
 services:
 
   sensu-server:
-    image: $REGISTRY_URL/sensu-server
+    build: sensu-server
     volumes:
     - $PWD/sensu-server/config/check-docker.json:/etc/sensu/conf.d/check-docker.json
     ports:

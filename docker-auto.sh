@@ -15,7 +15,7 @@ getenv(){
 }
 
 DOCKER_COMPOSE_VERSION="1.14.0"
-CONF_ARG="-f docker-compose-prod-elk.yml"
+CONF_ARG="-f docker-compose.yml"
 PATH=$PATH:/usr/local/bin/
 REGISTRY_URL="$(getenv REGISTRY_URL)"
 
@@ -40,12 +40,10 @@ usage() {
 echo "Usage:  $(basename "$0") [MODE] [OPTIONS] [COMMAND]"
 echo 
 echo "Mode:"
-echo "  --prod      ELK Stack for production"
-echo "  --dev       ELK Stack for development"
-echo
-echo "Options:"
-echo "  --with-cadv     Add CAdvisor service"
-echo "  --with-hub      Add encrypted connection for Kibana, hub required"
+echo "  --server       Sensu Server"
+echo "  --server-dev   Sensu Server for development"
+echo "  --client       Sensu Client"
+echo "  --client-dev   Sensu Client for development"
 echo
 echo "Commands:"
 echo "  up              Start the services"
@@ -68,20 +66,12 @@ fi
 for i in "$@"
 do
 case $i in
-    --prod)
-        CONF_ARG="-f docker-compose-prod-elk.yml"
+    --server)
+        CONF_ARG="-f docker-compose.yml"
         shift
         ;;
-    --dev)
-        CONF_ARG="-f docker-compose-dev-elk.yml"
-        shift
-        ;;
-    --with-cadv)
-        CONF_ARG="$CONF_ARG -f docker-compose-cadvisor.yml"
-        shift
-        ;;
-    --with-hub)
-        CONF_ARG="$CONF_ARG -f docker-compose-with-hub.yml"
+    --client)
+        CONF_ARG="-f docker-compose-client.yml"
         shift
         ;;
     --help|-h)
