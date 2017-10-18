@@ -74,6 +74,14 @@ case $i in
         CONF_ARG="-f docker-compose-client.yml"
         shift
         ;;
+    --server-dev)
+        CONF_ARG="-f docker-compose-dev.yml"
+        shift
+        ;;
+    --client-dev)
+        CONF_ARG="-f docker-compose-client-dev.yml"
+        shift
+        ;;
     --help|-h)
         usage
         exit 1
