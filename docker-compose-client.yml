@@ -14,3 +14,9 @@ services:
     - SENSU_PASSWORD
     - CLIENT_NAME
     - CLIENT_IP
+    logging: 
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
+    restart: "unless-stopped"

@@ -6,11 +6,17 @@ services:
     image: $REGISTRY_URL/sensu-server:dev
     volumes:
     - $PWD/sensu-server/config/check-docker.json:/etc/sensu/conf.d/check-docker.json
+    - $PWD/sensu-server/checks/check-disk-usage.json:/etc/sensu/conf.d/check-disk-usage.json
     ports:
     - 4567:4567  # API PORT
     - 5672:5672  # rabbitmq
     - 15672:15672  # rabbitmq console
-    command: redis-cli ping
+    logging: 
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
+    restart: "unless-stopped"
 
   uchiwa:
     image: uchiwa/uchiwa
@@ -20,3 +26,9 @@ services:
     - sensu-server
     ports:
     - 3000:3000  # WEB UI PORT (uchiwa)
+    logging: 
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
+    restart: "unless-stopped"
