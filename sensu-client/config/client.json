@@ -4,7 +4,8 @@
       "address": "CLIENT_IP",
       "environment": "development",
       "subscriptions": [
-        "docker"
+        "docker",
+        "disk-usage"
       ]
     },
     "keepalive": {

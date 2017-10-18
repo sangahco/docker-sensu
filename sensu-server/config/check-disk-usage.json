@@ -1,0 +1,12 @@
+{
+    "checks": {
+      "disk-usage": {
+        "type": "metric",
+        "command": "check-disk-usage.rb -w 80 -c 90",
+        "subscribers": [
+          "disk-usage"
+        ],
+        "interval": 10
+      }
+    }
+  }
