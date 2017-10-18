@@ -3,7 +3,10 @@ LABEL Author="Emanuele Disco <emanuele.disco@gmail.com>"
 
 COPY ./config/ /usr/local/src/
 
-ENV CODENAME=jessie
+ENV CODENAME=jessie \
+    SENSU_CONFIG_DIR=/etc/sensu/conf.d \
+    SENSU_PLUGIN_DIR=/etc/sensu/plugins \
+    SENSU_HOME_DIR=/opt/sensu
 
 # install redis
 RUN set -ex && \
@@ -13,8 +16,8 @@ RUN set -ex && \
         wget \
         apt-transport-https && \
     apt-get clean && \
-    mkdir -p /etc/sensu/conf.d && \
-    cp /usr/local/src/redis.json /etc/sensu/conf.d/ && \
+    mkdir -p $SENSU_CONFIG_DIR && \
+    cp /usr/local/src/redis.json $SENSU_CONFIG_DIR && \
     echo "ULIMIT=65536" >> /etc/default/redis-server
 
 
@@ -29,7 +32,7 @@ RUN set -ex && \
             logrotate && \
     curl http://www.rabbitmq.com/releases/rabbitmq-server/v3.6.9/rabbitmq-server_3.6.9-1_all.deb -o rabbitmq-server.deb && \
     dpkg -i rabbitmq-server.deb && \
-    cp /usr/local/src/rabbitmq.json /etc/sensu/conf.d/ && \
+    cp /usr/local/src/rabbitmq.json $SENSU_CONFIG_DIR && \
     cp /usr/local/src/rabbitmq.config /etc/rabbitmq/ && \
     echo "ulimit -n 65536" >> /etc/default/rabbitmq-server
 
@@ -39,8 +42,9 @@ RUN set -ex && \
     wget -q https://sensu.global.ssl.fastly.net/apt/pubkey.gpg -O- | apt-key add - && \
     echo "deb https://sensu.global.ssl.fastly.net/apt $CODENAME main" | tee /etc/apt/sources.list.d/sensu.list && \
     apt-get update && apt-get install -y sensu && \
-    cp /usr/local/src/transport.json /etc/sensu/conf.d/ && \
-    cp /usr/local/src/api.json /etc/sensu/conf.d/
+    cp /usr/local/src/transport.json $SENSU_CONFIG_DIR && \
+    cp /usr/local/src/api.json $SENSU_CONFIG_DIR && \
+    cp /usr/local/src/handlers.json $SENSU_CONFIG_DIR
 
 # remove the src folder
 RUN rm -rf /usr/local/src && \
@@ -48,7 +52,9 @@ RUN rm -rf /usr/local/src && \
 
 EXPOSE 4567 5672 15672
 
-HEALTHCHECK CMD curl --fail http://127.0.0.1:4567/health || exit 1
+HEALTHCHECK --interval=60s CMD curl --fail http://127.0.0.1:4567/health || exit 1
+
+ENV PATH $SENSU_PLUGIN_DIR:$SENSU_HOME_DIR/embedded/bin:$PATH
 
 COPY ./docker-entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
