@@ -1,4 +1,4 @@
-FROM $REGISTRY_URL/sensu-server
+FROM dev.sangah.com:5043/sensu-server
 
 COPY ./config/client.json /etc/sensu/conf.d/
 
