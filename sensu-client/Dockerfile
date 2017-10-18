@@ -1,4 +1,4 @@
-FROM dev.sangah.com:5043/sensu-server:dev
+FROM dev.sangah.com:5043/sensu-server
 
 COPY ./config/ /tmp/sensu/conf.d/
 

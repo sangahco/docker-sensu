@@ -3,7 +3,7 @@ version: "3"
 services:
 
   sensu-client:
-    image: $REGISTRY_URL/sensu-client:dev
+    image: $REGISTRY_URL/sensu-client
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
     - $PWD/sensu-client/plugins:/etc/sensu/plugins
