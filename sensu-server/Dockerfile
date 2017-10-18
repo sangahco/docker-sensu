@@ -46,7 +46,9 @@ RUN set -ex && \
 RUN rm -rf /usr/local/src && \
     rm -rf /var/lib/apt/lists/*
 
-EXPOSE 3000 4567 5672 15672
+EXPOSE 4567 5672 15672
+
+HEALTHCHECK CMD curl --fail http://127.0.0.1:4567/health || exit 1
 
 COPY ./docker-entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh

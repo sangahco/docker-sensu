@@ -1,14 +1,16 @@
 {
     "client": {
-      "name": "ubuntu-client",
-      "address": "127.0.0.1",
+      "name": "CLIENT_NAME",
+      "address": "CLIENT_IP",
       "environment": "development",
       "subscriptions": [
         "docker"
-      ],
-      "socket": {
-        "bind": "127.0.0.1",
-        "port": 3030
-      }
+      ]
+    },
+    "keepalive": {
+      "thresholds": {
+        "critical": 60
+      },
+      "refresh": 300
     }
   }
