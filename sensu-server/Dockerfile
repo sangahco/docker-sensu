@@ -1,0 +1,1 @@
+FROM hiroakis/docker-sensu-server

@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+
+  sensu-server:
+    build: sensu-server
+    volumes:
+    - $PWD/sensu-server/check-docker.json:/etc/sensu/conf.d/check-docker.json
+    ports:
+    - 3000:3000  # WEB UI PORT (uchiwa)
+    - 4567:4567  # API PORT
+    - 5671:5671  # rabbitmq
+    - 15672:15672  # rabbitmq console

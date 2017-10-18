@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+
+  sensu-client:
+    build: sensu-client
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    - $PWD/sensu-client/plugins:/etc/sensu/plugins
+    command: ${SENSU_SERVER_IP} ${RABIT_MQ_USER} ${RABIT_MQ_PASSWORD} ${CLIENT_NAME} ${CLIENT_IP}
+    privileged: true
