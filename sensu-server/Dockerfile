@@ -11,11 +11,11 @@ ENV CODENAME=jessie \
 # install redis
 RUN set -ex && \
     apt-get update && apt-get -y install \
+        ca-certificates \
         redis-server \
         curl \
         wget \
         apt-transport-https && \
-    apt-get clean && \
     mkdir -p $SENSU_CONFIG_DIR && \
     cp /usr/local/src/redis.json $SENSU_CONFIG_DIR && \
     echo "ULIMIT=65536" >> /etc/default/redis-server
@@ -46,8 +46,9 @@ RUN set -ex && \
     cp /usr/local/src/api.json $SENSU_CONFIG_DIR && \
     cp /usr/local/src/handlers.json $SENSU_CONFIG_DIR
 
-# remove the src folder
+# cleanup
 RUN rm -rf /usr/local/src && \
+    apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 EXPOSE 4567 5672 15672
