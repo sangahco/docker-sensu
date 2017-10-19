@@ -5,7 +5,7 @@ services:
   sensu-server:
     image: $REGISTRY_URL/sensu-server
     volumes:
-    - $PWD/sensu-server/config/check-docker.json:/etc/sensu/conf.d/check-docker.json
+    - $PWD/sensu-server/checks/check-docker.json:/etc/sensu/conf.d/check-docker.json
     - $PWD/sensu-server/checks/check-disk-usage.json:/etc/sensu/conf.d/check-disk-usage.json
     ports:
     - 4567:4567  # API PORT
