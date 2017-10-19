@@ -6,7 +6,8 @@
       "subscribers": [
         "docker"
       ],
-      "interval": 10
+      "interval": 10,
+      "auto_resolve": false
     }
   }
 }
