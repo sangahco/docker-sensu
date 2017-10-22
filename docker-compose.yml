@@ -7,6 +7,8 @@ services:
     volumes:
     - $PWD/sensu-server/checks/check-docker.json:/etc/sensu/conf.d/check-docker.json
     - $PWD/sensu-server/checks/check-disk-usage.json:/etc/sensu/conf.d/check-disk-usage.json
+    - $PWD/sensu-server/checks/check-memory-usage.json:/etc/sensu/conf.d/check-memory-usage.json
+    - $PWD/sensu-server/checks/check-server-uptime.json:/etc/sensu/conf.d/check-server-uptime.json
     ports:
     - 4567:4567  # API PORT
     - 5672:5672  # rabbitmq
