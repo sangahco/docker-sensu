@@ -7,7 +7,7 @@
         "docker"
       ],
       "interval": 60,
-      "auto_resolve": false,
+      "auto_resolve": true,
       "handlers": ["default"]
     }
   }
