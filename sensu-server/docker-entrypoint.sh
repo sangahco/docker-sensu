@@ -2,6 +2,13 @@
 
 set -e
 
+# replace rabbitMQ credentials
+sed -i s/RABBITMQ_USER/${SENSU_USER}/g /etc/sensu/conf.d/rabbitmq.json
+sed -i s/RABBITMQ_PWD/${SENSU_PASSWORD}/g /etc/sensu/conf.d/rabbitmq.json
+
+sed -i s/RABBITMQ_USER/${SENSU_USER}/g /etc/rabbitmq/rabbitmq.config
+sed -i s/RABBITMQ_PWD/${SENSU_PASSWORD}/g /etc/rabbitmq/rabbitmq.config
+
 /etc/init.d/redis-server start
 status=$?
 if [ $status -ne 0 ]; then

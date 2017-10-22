@@ -6,7 +6,9 @@ COPY ./config/ /usr/local/src/
 ENV CODENAME=jessie \
     SENSU_CONFIG_DIR=/etc/sensu/conf.d \
     SENSU_PLUGIN_DIR=/etc/sensu/plugins \
-    SENSU_HOME_DIR=/opt/sensu
+    SENSU_HOME_DIR=/opt/sensu \
+    SENSU_USER=sensu \
+    SENSU_PASSWORD=secret
 
 # install redis
 RUN set -ex && \
@@ -48,6 +50,7 @@ RUN set -ex && \
 
 # cleanup
 RUN rm -rf /usr/local/src && \
+    apt-get autoremove -y && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 

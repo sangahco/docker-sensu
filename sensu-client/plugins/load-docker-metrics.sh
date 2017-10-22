@@ -28,10 +28,14 @@ echo "Running: ${running_containers}/${total_containers} \
 - Exited: ${exited_containers} \
 - Restarting: ${restarting_containers}"
 
-if [ ${running_containers} -lt 1 ]; then
-    exit 1;
+# if [ ${running_containers} -lt 1 ]; then
+#     exit 1;
+# fi
+
+if [ ${restarting_containers} -gt 0 ]; then
+    exit 2;
 fi
 
-if [ ${exited_containers} -gt 0 ] || [ ${restarting_containers} -gt 0 ]; then
+if [ ${exited_containers} -gt 0 ]; then
     exit 1;
 fi

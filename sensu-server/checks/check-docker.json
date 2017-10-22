@@ -6,8 +6,9 @@
       "subscribers": [
         "docker"
       ],
-      "interval": 10,
-      "auto_resolve": false
+      "interval": 60,
+      "auto_resolve": false,
+      "handlers": ["default"]
     }
   }
 }

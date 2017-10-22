@@ -1,8 +1,8 @@
 {
     "checks": {
-      "disk-usage": {
+      "memory-usage": {
         "type": "metric",
-        "command": "check-disk-usage.rb -w 80 -c 90",
+        "command": "check-memory-percent.rb -w 70 -c 80",
         "subscribers": [
           "general"
         ],

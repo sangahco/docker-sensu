@@ -1,8 +1,8 @@
 {
     "checks": {
-      "disk-usage": {
+      "server-uptime": {
         "type": "metric",
-        "command": "check-disk-usage.rb -w 80 -c 90",
+        "command": "check-uptime.rb",
         "subscribers": [
           "general"
         ],

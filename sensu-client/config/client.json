@@ -5,7 +5,7 @@
       "environment": "development",
       "subscriptions": [
         "docker",
-        "disk-usage"
+        "general"
       ]
     },
     "keepalive": {
