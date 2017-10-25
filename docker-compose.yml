@@ -16,6 +16,7 @@ services:
     environment:
     - SENSU_USER
     - SENSU_PASSWORD
+    - LOGSPOUT=ignore
     logging: 
       driver: "json-file"
       options:
@@ -31,6 +32,8 @@ services:
     - sensu-server
     ports:
     - 3000:3000  # WEB UI PORT (uchiwa)
+    environment:
+    - LOGSPOUT=ignore
     logging: 
       driver: "json-file"
       options:
