@@ -16,7 +16,7 @@ getenv(){
 
 REGISTRY_URL="$(getenv REGISTRY_URL)"
 REGISTRY_IMAGE="sensu-client"
-CONTAINER_ID_FILE=$PWD/tmp/fb.did
+CONTAINER_ID_FILE=$PWD/$REGISTRY_IMAGE.did
 
 if [ -f "$CONTAINER_ID_FILE" ]; then
     DID=`cat "$CONTAINER_ID_FILE"`
