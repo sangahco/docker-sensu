@@ -1,21 +1,26 @@
 #!/usr/bin/env bash
 
-set -e
+set -ex
 
+SCRIPT_BASE_PATH=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+cd "$SCRIPT_BASE_PATH"
+
+###############################################
+# Extract Environment Variables from .env file
+# Ex. REGISTRY_URL="$(getenv REGISTRY_URL)"
+###############################################
 getenv(){
     local _env="$(printenv $1)"
     echo "${_env:-$(cat .env | awk 'BEGIN { FS="="; } /^'$1'/ {sub(/\r/,"",$2); print $2;}')}"
 }
 
 REGISTRY_URL="$(getenv REGISTRY_URL)"
-CONTAINER_ID_FILE=/var/run/fb.did
+REGISTRY_IMAGE="sensu-client"
+CONTAINER_ID_FILE=$PWD/tmp/fb.did
 
 if [ -f "$CONTAINER_ID_FILE" ]; then
     DID=`cat "$CONTAINER_ID_FILE"`
 fi
-
-SCRIPT_BASE_PATH=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
-cd "$SCRIPT_BASE_PATH"
 
 usage() {
 echo "Usage:  $(basename "$0") [MODE] [OPTIONS] [COMMAND]"
@@ -57,23 +62,23 @@ if [ "$1" == "login" ]; then
     exit 0
 
 elif [ "$1" == "up" ]; then
-    docker pull $REGISTRY_URL/sensu-client
+    docker pull $REGISTRY_URL/$REGISTRY_IMAGE
     docker run \
     --volume "/var/run/docker.sock:/var/run/docker.sock" \
     --volume "$PWD/sensu-client/plugins:/etc/sensu/plugins" \
     --env "LOGSPOUT=ignore" \
-    --env "SENSU_HOST=${getenv SENSU_HOST}" \
-    --env "SENSU_USER=${getenv SENSU_USER}" \
-    --env "SENSU_PASSWORD=${getenv SENSU_PASSWORD}" \
-    --env "CLIENT_NAME=${getenv CLIENT_NAME}" \
-    --env "CLIENT_IP=${getenv CLIENT_IP}" \
+    --env "SENSU_HOST=$(getenv SENSU_HOST)" \
+    --env "SENSU_USER=$(getenv SENSU_USER)" \
+    --env "SENSU_PASSWORD=$(getenv SENSU_PASSWORD)" \
+    --env "CLIENT_NAME=$(getenv CLIENT_NAME)" \
+    --env "CLIENT_IP=$(getenv CLIENT_IP)" \
     --detach=true \
     --restart=always \
     --privileged \
     --log-driver json-file \
     --log-opt max-size=10m \
     --log-opt max-file=5 \
-    $REGISTRY_URL/filebeat > $CONTAINER_ID_FILE
+    $REGISTRY_URL/$REGISTRY_IMAGE > $CONTAINER_ID_FILE
     exit 0
 
 elif [ "$1" == "down" ]; then
