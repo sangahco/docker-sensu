@@ -62,11 +62,11 @@ elif [ "$1" == "up" ]; then
     --volume "/var/run/docker.sock:/var/run/docker.sock" \
     --volume "$PWD/sensu-client/plugins:/etc/sensu/plugins" \
     --env "LOGSPOUT=ignore" \
-    --env "SENSU_HOST=${SENSU_HOST}" \
-    --env "SENSU_USER=${SENSU_USER}" \
-    --env "SENSU_PASSWORD=${SENSU_PASSWORD}" \
-    --env "CLIENT_NAME=${CLIENT_NAME}" \
-    --env "CLIENT_IP=${CLIENT_IP}" \
+    --env "SENSU_HOST=${getenv SENSU_HOST}" \
+    --env "SENSU_USER=${getenv SENSU_USER}" \
+    --env "SENSU_PASSWORD=${getenv SENSU_PASSWORD}" \
+    --env "CLIENT_NAME=${getenv CLIENT_NAME}" \
+    --env "CLIENT_IP=${getenv CLIENT_IP}" \
     --detach=true \
     --restart=always \
     --privileged \
