@@ -1,4 +1,4 @@
-[![HitCount](http://hits.dwyl.io/sangahco/sangahco/docker-sensu.svg)](http://hits.dwyl.io/sangahco/sangahco/docker-log-shippers)
+[![HitCount](http://hits.dwyl.io/sangahco/sangahco/docker-sensu.svg)](http://hits.dwyl.io/sangahco/sangahco/docker-sensu)
 [![Jenkins](https://img.shields.io/jenkins/s/https/dev.builder.sangah.com/job/sensu-prod.svg?style=flat-square)]()
 
 # Server and Client for monitoring Docker containers
