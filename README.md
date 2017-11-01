@@ -1,3 +1,6 @@
+[![HitCount](http://hits.dwyl.io/sangahco/sangahco/docker-sensu.svg)](http://hits.dwyl.io/sangahco/sangahco/docker-log-shippers)
+[![Jenkins](https://img.shields.io/jenkins/s/https/dev.builder.sangah.com/job/sensu-prod.svg?style=flat-square)]()
+
 # Server and Client for monitoring Docker containers
 
 Docker images ready to run for Sensu server and client service.
