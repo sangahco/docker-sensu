@@ -21,9 +21,6 @@ If they are missing, follow the instructions on the official website (they are n
 
 ## How to Use
 
-Before starting the services make sure the variable `LOGSTASH_HOST` 
-is set correctly to the right *Logstash* host machine.
-
 **Use the script `docker-auto.sh` to manage these services!**
 
     $ ./docker-auto.sh --help
