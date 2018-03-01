@@ -1,4 +1,4 @@
-FROM dev.sangah.com:5043/sensu-server
+FROM sangah/sensu-server
 LABEL Author="Emanuele Disco <emanuele.disco@gmail.com>"
 
 RUN set -ex && \
