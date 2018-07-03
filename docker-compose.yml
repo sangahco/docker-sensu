@@ -11,8 +11,6 @@ services:
     - $PWD/sensu-server/checks/check-server-uptime.json:/etc/sensu/conf.d/check-server-uptime.json
     ports:
     - 4567:4567  # API PORT
-    - 5672:5672  # rabbitmq
-    - 15672:15672  # rabbitmq console
     environment:
     - SENSU_USER
     - SENSU_PASSWORD
@@ -33,6 +31,9 @@ services:
     - RABBITMQ_DEFAULT_PASS=$SENSU_PASSWORD
     - RABBITMQ_DEFAULT_VHOST=/sensu
     - RABBITMQ_VM_MEMORY_HIGH_WATERMARK=0.8
+    ports:
+    - 5672:5672    # rabbitmq api
+    - 15672:15672  # rabbitmq console
     logging: 
       driver: "json-file"
       options:
