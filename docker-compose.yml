@@ -17,6 +17,8 @@ services:
     - SENSU_USER
     - SENSU_PASSWORD
     - LOGSPOUT=ignore
+    depends_on:
+    - rabbitmq
     logging: 
       driver: "json-file"
       options:

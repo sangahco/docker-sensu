@@ -14,6 +14,8 @@ services:
     environment:
     - SENSU_USER
     - SENSU_PASSWORD
+    depends_on:
+    - rabbitmq
 
   rabbitmq:
     image: sangah/rabbitmq
