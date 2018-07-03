@@ -24,7 +24,6 @@ services:
     - RABBITMQ_DEFAULT_PASS=$SENSU_PASSWORD
     - RABBITMQ_DEFAULT_VHOST=/sensu
     - RABBITMQ_VM_MEMORY_HIGH_WATERMARK=0.8
-    network_mode: "service:sensu-server"
     logging: 
       driver: "json-file"
       options:

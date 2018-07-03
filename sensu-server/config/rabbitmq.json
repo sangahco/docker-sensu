@@ -1,6 +1,6 @@
 {
     "rabbitmq": {
-        "host": "127.0.0.1",
+        "host": "rabbitmq",
         "port": 5672,
         "vhost": "/sensu",
         "user": "RABBITMQ_USER",
