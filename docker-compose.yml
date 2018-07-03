@@ -24,6 +24,21 @@ services:
         max-file: "5"
     restart: "unless-stopped"
 
+  rabbitmq:
+    image: rabbitmq:3.6-alpine
+    environment: 
+    - RABBITMQ_DEFAULT_USER=$SENSU_USER
+    - RABBITMQ_DEFAULT_PASS=$SENSU_PASSWORD
+    - RABBITMQ_DEFAULT_VHOST=/sensu
+    - RABBITMQ_VM_MEMORY_HIGH_WATERMARK=0.8
+    network_mode: "service:sensu-server"
+    logging: 
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
+    restart: "unless-stopped"
+
   uchiwa:
     image: uchiwa/uchiwa
     volumes:
