@@ -39,7 +39,7 @@ RUN rm -rf /usr/local/src && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-EXPOSE 4567 5672 15672
+EXPOSE 4567
 
 HEALTHCHECK --interval=60s CMD curl --fail http://127.0.0.1:4567/health || exit 1
 
