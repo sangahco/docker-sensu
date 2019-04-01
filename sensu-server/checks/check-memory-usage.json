@@ -2,7 +2,7 @@
     "checks": {
       "memory-usage": {
         "type": "metric",
-        "command": "check-memory-percent.rb -w 70 -c 80",
+        "command": "check-memory-percent.rb -w 80 -c 90",
         "subscribers": [
           "general"
         ],

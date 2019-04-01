@@ -1,6 +1,12 @@
 {
     "handlers": {
         "default": {
+            "type": "set",
+            "handlers": [
+                "sysout"
+            ]
+        },
+        "sysout": {
             "type": "pipe",
             "command": "cat"
         }
