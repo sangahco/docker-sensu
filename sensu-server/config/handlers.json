@@ -3,7 +3,8 @@
         "default": {
             "type": "set",
             "handlers": [
-                "sysout"
+                "sysout",
+				"slack"
             ]
         },
         "sysout": {

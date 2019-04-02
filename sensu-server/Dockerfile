@@ -33,6 +33,9 @@ RUN set -ex && \
     cp /usr/local/src/api.json $SENSU_CONFIG_DIR && \
     cp /usr/local/src/handlers.json $SENSU_CONFIG_DIR
 
+# install slack plugins
+RUN gem install sensu-plugins-slack
+
 # cleanup
 RUN rm -rf /usr/local/src && \
     apt-get autoremove -y && \
