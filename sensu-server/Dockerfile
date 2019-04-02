@@ -31,10 +31,10 @@ RUN set -ex && \
     cp /usr/local/src/rabbitmq.json $SENSU_CONFIG_DIR && \
     cp /usr/local/src/transport.json $SENSU_CONFIG_DIR && \
     cp /usr/local/src/api.json $SENSU_CONFIG_DIR && \
-    cp /usr/local/src/handlers.json $SENSU_CONFIG_DIR
-
-# install slack plugins
-RUN gem install sensu-plugins-slack
+    cp /usr/local/src/handlers.json $SENSU_CONFIG_DIR && \
+    cp /usr/local/src/state_change_only.json $SENSU_CONFIG_DIR && \
+    cp /usr/local/src/slack_handler.json $SENSU_CONFIG_DIR && \
+	$SENSU_HOME_DIR/embedded/bin/gem install sensu-plugins-slack
 
 # cleanup
 RUN rm -rf /usr/local/src && \
