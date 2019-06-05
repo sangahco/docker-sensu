@@ -11,6 +11,6 @@
       }
     },
     "slack": {
-      "webhook_url": "WEBHOOK_TO_CHANGE"
+      "webhook_url": "SLACK_HANDLER_WEBHOOK"
     }
 }
