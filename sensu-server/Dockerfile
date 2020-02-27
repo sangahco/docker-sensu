@@ -1,9 +1,9 @@
-FROM debian:jessie-slim
+FROM debian:stretch-slim
 LABEL Author="Emanuele Disco <emanuele.disco@gmail.com>"
 
 COPY ./config/ /usr/local/src/
 
-ENV CODENAME=jessie \
+ENV CODENAME=stretch \
     SENSU_CONFIG_DIR=/etc/sensu/conf.d \
     SENSU_PLUGIN_DIR=/etc/sensu/plugins \
     SENSU_HOME_DIR=/opt/sensu \
@@ -17,6 +17,7 @@ RUN set -ex && \
         redis-server \
         curl \
         wget \
+        gnupg2 \
         apt-transport-https && \
     mkdir -p $SENSU_CONFIG_DIR && \
     cp /usr/local/src/redis.json $SENSU_CONFIG_DIR && \
