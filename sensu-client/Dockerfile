@@ -5,6 +5,7 @@ RUN set -ex && \
     apt-get update && apt-get install -y \
         #netcat-openbsd \
         python3 \
+        procps \
         build-essential && \
     ln -s /usr/bin/python3 /usr/bin/python && \
     mkdir -p /usr/local/src && \
