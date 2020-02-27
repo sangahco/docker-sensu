@@ -18,6 +18,7 @@ RUN set -ex && \
         curl \
         wget \
         gnupg2 \
+        procps \
         apt-transport-https && \
     mkdir -p $SENSU_CONFIG_DIR && \
     cp /usr/local/src/redis.json $SENSU_CONFIG_DIR && \
